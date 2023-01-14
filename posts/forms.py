@@ -14,6 +14,6 @@ class PostForm(ModelForm):
             }),
             'content': TextInput(attrs={
                 'class': 'form-control',
-                'placeholder': 'Содержание'
+                'placeholder': 'Содержание поста'
             })
         }
