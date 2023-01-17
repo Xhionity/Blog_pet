@@ -1,5 +1,5 @@
 {% load static %}
-
+{% csrf_token %}
 
 <!DOCTYPE html>
 
@@ -41,7 +41,7 @@
 
                  {% for f in form %}
                      {% csrf_token %}
-                     <p><label class="form__input" for="{{ f.id_for_label }}">{{ f.label }}:</label>{{ f }} </p>
+                     <p><label class="form__title"></label>{{ f }} </p>
                  {% endfor %}
              <p><button class="form__btn form__btn_signup" type="submit">Регистрация</button> </p>
              </form>
@@ -50,8 +50,10 @@
 
             <form action="#" class="form form_signin" method="post">
                 <h3 class="form__title">Авторизация</h3>
-                <p><input  class="form__input" placeholder="Введите имя пользователя"></p>
-                <p><input type="password" class="form__input" placeholder="Введите пароль"></p>
+                {% for f in login_form %}
+                    {% csrf_token %}
+                    <p><label class="form__title"></label> {{ f }}</p>
+                {% endfor %}
                 <p><button type="submit" class="form__btn">Войти</button></p>
             </form>
         </div>

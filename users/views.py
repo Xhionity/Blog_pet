@@ -1,7 +1,9 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from .forms import UserRegisterForm
+from django.views.decorators import csrf
+
+from .forms import UserRegisterForm, LoginForm
 
 
 def register(request):
@@ -11,10 +13,11 @@ def register(request):
             form.save()
             username = form.cleaned_data.get('username')
             messages.success(request, f'Ваш аккаунт создан {username}.')
-            return redirect('')
+            return redirect('blog-home')
     else:
         form = UserRegisterForm()
-    return render(request, 'blog-reglog.html', {'form': form})
+    return render(request, 'blog-reglog.html', {'form': form,
+                                                'login_form': LoginForm()})
 
 
 @login_required

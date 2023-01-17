@@ -8,6 +8,9 @@ class Post(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     created = models.DateTimeField(auto_now_add=True)
 
+    def __str__(self):
+        return self.title
+
     class Meta:
         ordering = ['-created']
 
@@ -21,3 +24,6 @@ class Comment(models.Model):
     post = models.ForeignKey(Post, on_delete=models.CASCADE)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     text = models.TextField()
+
+    def __str__(self):
+        return 'Comment by {} on {}'.format(self.author, self.post)
