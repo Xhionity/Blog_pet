@@ -10,11 +10,11 @@ def register(request):
         if form.is_valid():
             form.save()
             username = form.cleaned_data.get('username')
-            messages.success(request, f'Ваш аккаунт создан: можно войти на сайт.')
-            return redirect('login')
+            messages.success(request, f'Ваш аккаунт создан {username}.')
+            return redirect('')
     else:
         form = UserRegisterForm()
-    return render(request, 'register.html', {'form': form})
+    return render(request, 'blog-reglog.html', {'form': form})
 
 
 @login_required

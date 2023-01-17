@@ -1,0 +1,60 @@
+{% load static %}
+
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog site A/N</title>
+    <link rel="stylesheet" href="{% static 'css/reglog-style.css' %}">
+    <script src="{% static 'js/anim-reglog.js' %}" defer></script>
+</head>
+<body>
+
+    <!--Контейнер-->
+    <article class="conteiner">
+
+        <!--Внутренний блок-->
+        <div class="block">
+
+            <section class="block__item block-item">
+                <h2 class="block-item__title">У вас уже есть аккаунт?</h2>
+                <button class="block-item__btn signin-btn">Войти</button>
+            </section>
+            <section class="block__item block-item">
+                <h2 class="block-item__title">У вас ещё нет аккаунта?</h2>
+                <button class="block-item__btn signup-btn">Создать</button>
+            </section>
+
+        </div>
+
+        <!--Блок формы-->
+        <div class="form-box">
+
+             <!--Форма регистрации-->
+
+             <form class="form form_signup" method="post">
+                <h3 class="form__title">Регистрация</h3>
+
+                 {% for f in form %}
+                     {% csrf_token %}
+                     <p><label class="form__input" for="{{ f.id_for_label }}">{{ f.label }}:</label>{{ f }} </p>
+                 {% endfor %}
+             <p><button class="form__btn form__btn_signup" type="submit">Регистрация</button> </p>
+             </form>
+
+            <!--Форма входа-->
+
+            <form action="#" class="form form_signin" method="post">
+                <h3 class="form__title">Авторизация</h3>
+                <p><input  class="form__input" placeholder="Введите имя пользователя"></p>
+                <p><input type="password" class="form__input" placeholder="Введите пароль"></p>
+                <p><button type="submit" class="form__btn">Войти</button></p>
+            </form>
+        </div>
+    </article>
+</body>
+</html>
